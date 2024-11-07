@@ -2,10 +2,6 @@ plugins {
     id 'java'
 }
 
-java {
-    sourceCompatibility = "21"
-}
-
 group = 'com.kodilla'
 version = '0.0.1-SNAPSHOT'
 
@@ -14,8 +10,10 @@ repositories {
 }
 
 dependencies {
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
 }
 
-tasks.named('test') {
+test {
     useJUnitPlatform()
 }
