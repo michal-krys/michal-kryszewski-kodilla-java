@@ -7,13 +7,12 @@ public class TestingMain {
 public static void main(String[] args) {
 
     //Calculator test
-       Calculator calculator = new Calculator(8, 2);
-       Calculator calculator1 = new Calculator(9, 16);
+       Calculator calculator = new Calculator();
 
-       int resultAdd = calculator.add();
-       int resultSubt = calculator1.subtract();
+       int resultAdd = calculator.add(8,4);
+       int resultSubt = calculator.subtract(5,6);
 
-       if (resultAdd == 10 && resultSubt == 10) {
+       if (resultAdd == 12 && resultSubt == -1) {
            System.out.println("Test finished successfully");
         } else {
            System.out.println("Test failed");
