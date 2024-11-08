@@ -1,9 +1,18 @@
 package com.kodilla.testing.collection;
 
-import java.util.List;
+import java.util.*;
 
 public class OddNumbersExterminator {
-        public List<Integer> exterminate(List<Integer> numbers){
-            return null;
+        public List<Integer> exterminate(List<Integer> numbers) {
+            if (numbers == null){
+                return new ArrayList<>();
+            }
+            List<Integer> evenNumbers = new ArrayList<>();
+            for (Integer number : numbers) {
+                if (number % 2 == 0) {
+                    evenNumbers.add(number);
+                }
+            }
+            return evenNumbers;
         }
     }
