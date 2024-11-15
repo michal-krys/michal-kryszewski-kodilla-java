@@ -118,6 +118,19 @@ public class ForumStatisticsTestSuite {
     }
 
     @Test
+    void testMeanPostsPerUserWith0Users() {
+        //Given
+        AdvancedStatistics advancedStatistics = new AdvancedStatistics();
+        List<String> zeroUsersList = new ArrayList<>();
+        when(statistics.userNames()).thenReturn(zeroUsersList);
+        when(statistics.postsCount()).thenReturn(100);
+        //When
+        advancedStatistics.calculateAdvStatistics(statistics);
+        //Then
+        assertEquals(0,advancedStatistics.getMeanPostsPerUser());
+    }
+
+    @Test
     void test0MeanCommentsPerUser() {
         //Given
         AdvancedStatistics advancedStatistics = new AdvancedStatistics();
@@ -147,6 +160,19 @@ public class ForumStatisticsTestSuite {
         advancedStatistics.calculateAdvStatistics(statistics);
         //Then
         assertEquals(0,advancedStatistics.getMeanCommentsPerUser());
+    }
+
+    @Test
+    void testMeanCommentsPerUserWith0Users() {
+        //Given
+        AdvancedStatistics advancedStatistics = new AdvancedStatistics();
+        List<String> zeroUsersList = new ArrayList<>();
+        when(statistics.userNames()).thenReturn(zeroUsersList);
+        when(statistics.commentsCount()).thenReturn(100);
+        //When
+        advancedStatistics.calculateAdvStatistics(statistics);
+        //Then
+        assertEquals(0,advancedStatistics.getMeanCommentsPerPost());
     }
 
     @Test
