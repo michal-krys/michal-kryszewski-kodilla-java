@@ -5,6 +5,7 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -82,6 +83,70 @@ public class ForumStatisticsTestSuite {
         advancedStatistics.calculateAdvStatistics(statistics);
         //Then
         assertEquals(2, advancedStatistics.getMeanCommentsPerPost());
+    }
+
+    @Test
+    void test0MeanPostsPerUser() {
+        //Given
+        AdvancedStatistics advancedStatistics = new AdvancedStatistics();
+        List<String> usersList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            usersList.add(String.valueOf(i));
+        }
+        when(statistics.userNames()).thenReturn(usersList);
+        when(statistics.postsCount()).thenReturn(0);
+        //When
+        advancedStatistics.calculateAdvStatistics(statistics);
+        //Then
+        assertEquals(0,advancedStatistics.getMeanPostsPerUser());
+    }
+
+    @Test
+    void test100MeanPostsPerUser() {
+        //Given
+        AdvancedStatistics advancedStatistics = new AdvancedStatistics();
+        List<String> usersList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            usersList.add(String.valueOf(i));
+        }
+        when(statistics.userNames()).thenReturn(usersList);
+        when(statistics.postsCount()).thenReturn(100);
+        //When
+        advancedStatistics.calculateAdvStatistics(statistics);
+        //Then
+        assertEquals(10,advancedStatistics.getMeanPostsPerUser());
+    }
+
+    @Test
+    void test0MeanCommentsPerUser() {
+        //Given
+        AdvancedStatistics advancedStatistics = new AdvancedStatistics();
+        List<String> usersList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            usersList.add(String.valueOf(i));
+        }
+        when(statistics.userNames()).thenReturn(usersList);
+        when(statistics.commentsCount()).thenReturn(0);
+        //When
+        advancedStatistics.calculateAdvStatistics(statistics);
+        //Then
+        assertEquals(0,advancedStatistics.getMeanCommentsPerUser());
+    }
+
+    @Test
+    void test100MeanCommentsPerUser() {
+        //Given
+        AdvancedStatistics advancedStatistics = new AdvancedStatistics();
+        List<String> usersList = new ArrayList<>();
+        for (int i = 0; i < 10; i++) {
+            usersList.add(String.valueOf(i));
+        }
+        when(statistics.userNames()).thenReturn(usersList);
+        when(statistics.commentsCount()).thenReturn(0);
+        //When
+        advancedStatistics.calculateAdvStatistics(statistics);
+        //Then
+        assertEquals(0,advancedStatistics.getMeanCommentsPerUser());
     }
 
     @Test
