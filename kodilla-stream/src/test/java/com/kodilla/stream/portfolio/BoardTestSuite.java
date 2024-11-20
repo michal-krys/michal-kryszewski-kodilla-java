@@ -147,7 +147,6 @@ public class BoardTestSuite {
         //When
         List<TaskList> avgDurationOfTasks = new ArrayList<>();
         avgDurationOfTasks.add(new TaskList("In Progress"));
-        avgDurationOfTasks.add(new TaskList("Done"));
         double avgTaskDuration = project.getTaskLists().stream()
                 .filter(avgDurationOfTasks::contains)
                 .flatMap(t -> t.getTasks().stream())
@@ -156,6 +155,6 @@ public class BoardTestSuite {
                 .orElse(0.0);
 
         //Then
-        assertEquals(11.25, avgTaskDuration);
+        assertEquals(10.0, avgTaskDuration);
     }
 }
