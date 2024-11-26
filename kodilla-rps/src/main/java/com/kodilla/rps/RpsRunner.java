@@ -36,15 +36,14 @@ public class RpsRunner {
         int computerScore = 0;
 
         System.out.println("Hello " + name + " welcome to 'Rock, Paper, Scissors'!" );
+        System.out.println(
+                "To play 'Rock' enter '1', \n" +
+                        "To play 'Paper' enter '2', \n" +
+                        "To play 'Scissors' enter '3', \n" +
+                        "To cancel enter 'x', \n" +
+                        "New game enter 'n'.");
 
         while (!end) {
-
-            System.out.println(
-                    "To play 'Rock' enter '1', \n" +
-                            "To play 'Paper' enter '2', \n" +
-                            "To play 'Scissors' enter '3', \n" +
-                            "To cancel enter 'x', \n" +
-                            "New game enter 'n'.");
 
             System.out.println("What is your move? ");
             String input = sc.nextLine();
@@ -63,7 +62,7 @@ public class RpsRunner {
             if (input.equalsIgnoreCase("n")) {
                 System.out.println("Are you sure you want to start a new game? (yes/no)");
                 if (sc.next().equalsIgnoreCase("yes")) {
-                    end = true;
+                    end = false;
                     System.out.println("Starting new game...");
                     playerScore = 0;
                     computerScore = 0;
@@ -101,11 +100,11 @@ public class RpsRunner {
             }
 
             if(playerScore == rounds) {
-                System.out.println("Congratulations " + name + " ! You won the game!");
+                System.out.println("Congratulations " + name + "! You won the game!");
                 end = true;
             } else if (computerScore == rounds) {
-                System.out.println("Sorry " + name + " , you lost the game!");
-
+                System.out.println("Sorry " + name + ", you lost the game!");
+                end = true;
             }
         }
     }
