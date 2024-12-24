@@ -81,7 +81,7 @@ public class RpsRunner {
 
             if (userInput.equals("x")) {
                 quitGame(scanner);
-                break;
+                continue;
             }
 
             try {
