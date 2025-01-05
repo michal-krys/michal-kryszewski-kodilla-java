@@ -126,4 +126,44 @@ public class GameTestSuite {
         assertEquals(0, game.getPlayerScore());
         assertEquals(winningScore, game.getComputerScore());
     }
+
+    @Test
+    void testPlayerResetScore() {
+        //Given
+        int winningScore = 4;
+        Game game = new Game(winningScore);
+        Move playerMove = new Move("Rock", 1);
+        Move computerMove = new Move("Scissors", 3);
+
+        //When
+        game.run(playerMove, computerMove);
+        game.run(playerMove, computerMove);
+        game.run(playerMove, computerMove);
+
+        assertEquals(3, game.getPlayerScore());
+        game.reset(game.getPlayerScore());
+
+        //Then
+        assertEquals(0, game.getPlayerScore());
+    }
+
+    @Test
+    void testComputerResetScore() {
+        //Given
+        int winningScore = 4;
+        Game game = new Game(winningScore);
+        Move playerMove = new Move("Rock", 1);
+        Move computerMove = new Move("Paper", 2);
+
+        //When
+        game.run(playerMove, computerMove);
+        game.run(playerMove, computerMove);
+        game.run(playerMove, computerMove);
+
+        assertEquals(3, game.getComputerScore());
+        game.reset(game.getComputerScore());
+
+        //Then
+        assertEquals(0, game.getComputerScore());
+    }
 }
