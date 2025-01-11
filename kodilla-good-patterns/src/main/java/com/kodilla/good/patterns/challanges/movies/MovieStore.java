@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.challanges;
+package com.kodilla.good.patterns.challanges.movies;
 
 import java.util.*;
 
@@ -19,7 +19,4 @@ public class MovieStore {
         booksTitlesWithTranslations.put("FL", flashTranslations);
         return booksTitlesWithTranslations;
     }
-
-
-
 }

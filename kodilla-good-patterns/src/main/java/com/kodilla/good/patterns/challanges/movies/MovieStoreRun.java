@@ -1,4 +1,4 @@
-package com.kodilla.good.patterns.challanges;
+package com.kodilla.good.patterns.challanges.movies;
 
 import java.util.stream.Collectors;
 
