@@ -13,6 +13,9 @@ public class LoggerTestSuite {
     public static void loggerInit() {
         logger = Logger.INSTANCE;
         logger.log("Test log 1");
+        logger.log("Test log 2");
+        logger.log("Test log 3");
+        logger.log("Test log 4");
     }
 
     @Test
@@ -21,6 +24,6 @@ public class LoggerTestSuite {
         //when
         String result = logger.getLastLog();
         //then
-        assertEquals("Test log 1", result);
+        assertEquals("Test log 4", result);
     }
 }
