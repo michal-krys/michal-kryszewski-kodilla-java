@@ -22,7 +22,7 @@ public class LoggerTestSuite {
     void testGetLastLog() {
         //given
         //when
-        String result = logger.getLastLog();
+        String result = Logger.INSTANCE.getLastLog();
         //then
         assertEquals("Test log 4", result);
     }
