@@ -1,0 +1,38 @@
+CREATE TABLE ISSUESLIST (
+    ID SERIAL PRIMARY KEY,
+    LISTNAME VARCHAR (100)
+);
+
+CREATE TABLE ISSUES (
+    ID SERIAL PRIMARY KEY,
+    ISSUESLIST_ID BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (ISSUESLIST_ID) REFERENCES ISSUESLIST(ID),
+    SUMMARY VARCHAR (200),
+    DESCRIPTION VARCHAR (600),
+    USER_ID_ASSIGNEDTO BIGINT UNSIGNED NOT NULL,
+    FOREIGN KEY (USER_ID_ASSIGNEDTO) REFERENCES USERS(ID)
+);
+
+INSERT INTO ISSUESLIST (LISTNAME) VALUES
+("ToDo"),
+("In progress"),
+("Done");
+
+INSERT INTO ISSUES (ISSUESLIST_ID, SUMMARY, DESCRIPTION, USER_ID_ASSIGNEDTO) VALUES
+(1, 'Login error', 'Users are unable to log in after the last update.', 1),
+(1, 'Incorrect formatting', 'Headings are not properly aligned.', 2),
+(1, 'Registration issue', 'New users cannot create an account.', 3),
+(1, 'Password reset not working', 'The password reset link does not function properly.', 4),
+(1, 'Validation issue', 'Forms do not validate input correctly.', 5),
+(2, 'Incorrect page display', 'Elements on the homepage overlap.', 1),
+(2, 'Application crashes', 'Clicking the "Save" button causes the app to freeze.', 2),
+(2, 'Search function not working', 'Search feature does not return results.', 3),
+(2, 'Slow loading times', 'Pages take too long to load.', 4),
+(2, 'Synchronization error', 'Data is not properly synchronized between users.', 5),
+(3, 'Database issue', 'New records cannot be saved in the database.', 1),
+(3, 'No notifications', 'Users are not receiving email notifications.', 2),
+(3, 'Data export issue', 'Exporting data to a CSV file does not work properly.', 3),
+(3, 'Authentication problems', 'Some users cannot authenticate.', 4),
+(3, 'UI bug', 'Buttons do not work on certain screens.', 5);
+
+COMMIT;
