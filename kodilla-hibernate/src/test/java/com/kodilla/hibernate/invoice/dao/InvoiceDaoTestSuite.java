@@ -9,6 +9,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 import java.math.BigDecimal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotEquals;
 
 @SpringBootTest
@@ -43,9 +44,32 @@ public class InvoiceDaoTestSuite {
         //when
         invoiceDao.save(invoice);
         int id = invoice.getId();
+        Invoice invoiceId = invoiceDao.findById(id).orElseThrow(
+                () -> new RuntimeException("Invoice not found in database")
+        );
+        int invoiceIdContains3Items = invoiceId.getItems().size();
+        String invoiceIdNumber = invoiceId.getNumber();
+        Product product1Id = invoiceId.getItems().get(0).getProduct();
+        Product product2Id = invoiceId.getItems().get(1).getProduct();
+        Product product3Id = invoiceId.getItems().get(2).getProduct();
+        Item item1Id = invoiceId.getItems().get(0);
+        Item item2Id = invoiceId.getItems().get(1);
+        Item item3Id = invoiceId.getItems().get(2);
+
 
         //then
         assertNotEquals(0, id);
+        assertEquals(3, invoiceIdContains3Items);
+        assertEquals("FV0001", invoiceIdNumber);
+        assertEquals("product1", product1Id.getName());
+        assertEquals("product2", product2Id.getName());
+        assertEquals("product3", product3Id.getName());
+        assertEquals(15, item1Id.getPrice().intValue());
+        assertEquals(5, item2Id.getPrice().intValue());
+        assertEquals(30, item3Id.getPrice().intValue());
+        assertEquals(10, item1Id.getQuantity());
+        assertEquals(23, item2Id.getQuantity());
+        assertEquals(8, item3Id.getQuantity());
 
         //cleanUp
         invoiceDao.deleteById(id);
